@@ -1,0 +1,51 @@
+{
+  "name": "back-koa2",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "npx ts-node bin/www.ts",
+    "start": "nodemon --exec 'npm run dev'",
+    "prd": "pm2 start bin/www --NODE_ENV==prod",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "_moduleAliases": {
+    "@": "src"
+  },
+  "_moduleDirectories": [
+    "node_modules_custom"
+  ],
+  "dependencies": {
+    "bcrypt": "^5.0.1",
+    "debug": "^4.1.1",
+    "jsonwebtoken": "^8.5.1",
+    "koa": "^2.7.0",
+    "koa-bodyparser": "^4.2.1",
+    "koa-convert": "^1.2.0",
+    "koa-json": "^2.0.2",
+    "koa-logger": "^3.2.0",
+    "koa-onerror": "^4.1.0",
+    "koa-router": "^7.4.0",
+    "koa-static": "^5.0.0",
+    "koa-views": "^6.2.0",
+    "mysql": "^2.18.1",
+    "pug": "^2.0.3",
+    "ts-node": "^10.2.1"
+  },
+  "devDependencies": {
+    "@types/bcrypt": "^5.0.0",
+    "@types/jsonwebtoken": "^8.5.5",
+    "@types/koa": "^2.13.4",
+    "@types/koa-bodyparser": "^4.3.3",
+    "@types/koa-compress": "^4.0.3",
+    "@types/koa-favicon": "^2.0.21",
+    "@types/koa-logger": "^3.1.1",
+    "@types/koa-router": "^7.4.4",
+    "@types/koa-static": "^4.0.2",
+    "@types/koa2-cors": "^2.0.2",
+    "@types/log4js": "^2.3.5",
+    "@types/node": "^16.10.0",
+    "module-alias": "^2.2.2",
+    "nodemon": "^1.19.1",
+    "typescript-module-alias": "^1.0.2"
+  }
+}

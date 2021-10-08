@@ -1,0 +1,10 @@
+{
+  "devDependencies": {
+    "@types/koa": "^2.13.4",
+    "koa-generator": "^1.1.17",
+    "module-alias": "^2.2.2",
+    "nodemon": "^2.0.13",
+    "tslint": "^6.1.3",
+    "typescript": "^4.4.3"
+  }
+}
