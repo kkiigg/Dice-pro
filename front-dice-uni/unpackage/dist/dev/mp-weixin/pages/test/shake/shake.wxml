@@ -1,0 +1,1 @@
+<view class="box"><view hidden="{{!(isShaking)}}" class="shake-flag">{{isShaking}}</view>{{''+count+''}}</view>

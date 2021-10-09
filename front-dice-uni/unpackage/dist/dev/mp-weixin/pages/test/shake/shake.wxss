@@ -1,0 +1,8 @@
+
+.shake-flag{
+	widows: 200px;
+	height:200px;
+	background: #4CD964;
+	border-radius:10px ;
+}
+

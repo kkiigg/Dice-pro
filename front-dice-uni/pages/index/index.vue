@@ -1,8 +1,22 @@
 <template>
 	<view class="content">
-		<view class="text-area">
-			<text class="title">{{title}}</text>
+		<view class="">
+			menu list
 		</view>
+		<navigator 
+			url="/pages/test/getUserInfo/getUserInfo" 
+			class="nav-bar"> <button type="default">获取用户信息</button></navigator>
+			
+		<navigator
+			url="/pages/test/login/login" 
+			class="nav-bar"> <button type="default">登录</button></navigator>
+		<navigator
+			url="/pages/test/login/login" 
+			class="nav-bar"> <button type="default">地图</button></navigator>
+		<navigator
+			url="/pages/test/shake/shake" 
+			class="nav-bar"> <button type="default">摇一摇</button></navigator>	
+			
 	</view>
 </template>
 
@@ -17,35 +31,13 @@
 
 		},
 		methods: {
-
+			
 		}
 	}
 </script>
 
 <style>
-	.content {
-		display: flex;
-		flex-direction: column;
-		align-items: center;
-		justify-content: center;
-	}
-
-	.logo {
-		height: 200rpx;
-		width: 200rpx;
-		margin-top: 200rpx;
-		margin-left: auto;
-		margin-right: auto;
-		margin-bottom: 50rpx;
-	}
-
-	.text-area {
-		display: flex;
-		justify-content: center;
-	}
-
-	.title {
-		font-size: 36rpx;
-		color: #8f8f94;
+	.nav-bar{
+		padding:10px 20px;
 	}
 </style>

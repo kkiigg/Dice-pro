@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "npx ts-node bin/www.ts",
-    "start": "nodemon --exec 'npm run dev'",
+    "start": "nodemon --exec npm run dev",
     "prd": "pm2 start bin/www --NODE_ENV==prod",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
