@@ -2,7 +2,7 @@
  * @Author: zw
  * @Date: 2021-10-09 11:05:58
  * @LastEditors: zw
- * @LastEditTime: 2021-10-11 15:18:31
+ * @LastEditTime: 2021-10-11 18:43:41
  * @Description: 
  */
 const Koa = require('koa')
@@ -53,6 +53,7 @@ app.use(views(__dirname + '/views', {
 app.use(async (ctx:any,next:any)=>  {
 
   const start = new Date().getTime()
+  
   await next()
   const end = new Date().getTime()
   const ms=end - start

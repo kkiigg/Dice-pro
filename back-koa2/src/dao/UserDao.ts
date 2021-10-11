@@ -1,8 +1,15 @@
+/*
+ * @Author: zw
+ * @Date: 2021-10-09 11:05:58
+ * @LastEditors: zw
+ * @LastEditTime: 2021-10-11 18:46:23
+ * @Description: 
+ */
 const {querySQL,drop,update,query}=require('../plugins/db')
 
 //获取所有用户列表
 export async function getUserList(){
-  const res= await querySQL('select * from user')
+  const res= await querySQL('select * from USER')
   console.log('res',res)
   return res
 }
