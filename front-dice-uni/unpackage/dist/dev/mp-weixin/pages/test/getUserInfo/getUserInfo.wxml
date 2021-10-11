@@ -1,1 +1,1 @@
-<view><button type="default" data-event-opts="{{[['tap',[['getProvider',['$event']]]]]}}" bindtap="__e">点击获取</button></view>
+<view><button type="default" data-event-opts="{{[['tap',[['getUserData',['$event']]]]]}}" bindtap="__e">点击获取</button></view>

@@ -1,3 +1,10 @@
+/*
+ * @Author: zw
+ * @Date: 2021-10-09 11:05:58
+ * @LastEditors: zw
+ * @LastEditTime: 2021-10-11 17:31:17
+ * @Description: 
+ */
 import app from '../src/app';
 const http=require('http');
 
@@ -12,7 +19,7 @@ const http=require('http');
  * Get port from environment and store in Express.
  */
 
-var port = normalizePort(process.env.PORT || '3000');
+var port = normalizePort(process.env.PORT || '3030');
 // var port = process.env.PORT || '3000';
 // app.set('port', port);
 

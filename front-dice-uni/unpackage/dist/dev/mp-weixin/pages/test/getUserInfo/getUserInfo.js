@@ -144,27 +144,29 @@ var _default =
 
   },
   methods: {
-    getProvider: function getProvider() {
-      var that = this;
-      uni.getProvider({
-        service: 'oauth',
-        success: function success(data) {
-          //service :服务类型, 
-          //provider :返回的provider
-          console.log('data', data); //只针对微信
-          that.getUserData(data.provider);
-        },
-        fail: function fail() {
-          console.warn('%%获取失败');
-        },
-        complete: function complete() {
-          console.warn('%%执行完毕');
-        } });
-
-    },
+    // getProvider(){
+    // 	let that=this
+    // 	uni.getProvider({
+    // 		service:'oauth',
+    // 		success(data){
+    // 			//service :服务类型, 
+    // 			//provider :返回的provider
+    // 			console.log('data',data) //只针对微信
+    // 			that.getUserData(data.provider)
+    // 		},
+    // 		fail(){
+    // 			console.warn('%%获取失败')
+    // 		},
+    // 		complete(){
+    // 			console.warn('%%执行完毕')
+    // 		}
+    // 	})
+    // },
     getUserData: function getUserData(provider) {
-      uni.getUserInfo({
-        provider: provider, //string
+      //getUserInfo
+      uni.getUserProfile({
+        //provider, //string
+        desc: 'for test',
         lang: 'zh_CN', // zh_TW |  en
         success: function success(data) {
           //userInfo,rawData,signature,encryptedData,iv,errMsg

@@ -7,10 +7,8 @@ const dbConfig={
   ...config.database,
   database : 'dice'
 }
-
+console.log('dbConfig==>',dbConfig)
 var pool  = mysql.createPool(dbConfig);
-console.log('dbConfig',dbConfig)
-
 
 export async function querySQL(sql:string){
   let res=await executeSql(sql)

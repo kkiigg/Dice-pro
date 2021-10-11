@@ -1,10 +1,12 @@
 <template>
 	<view>
-		<button @click="login">login</button>
+		<button @click="loginHandler">login</button>
 	</view>
 </template>
 
 <script>
+	import request from '../../../plugins/request';
+
 	export default {
 		data() {
 			return {
@@ -12,20 +14,29 @@
 			}
 		},
 		methods: {
-			login(){
+			loginHandler(){
 				uni.login({
 				  provider: 'weixin',
-				  success: function (loginRes) {
+				  success: async function (loginRes) {
 				    console.log(loginRes);
-						const code=loginRes.code
-						console.log(code) //登录用
-				    // 获取用户信息
-				    uni.getUserInfo({
-				      provider: 'weixin',
-				      success: function (infoRes) {
-				        console.log('用户昵称为：' + infoRes.userInfo.nickName);
-				      }
-				    });
+					const code=loginRes.code;
+					console.log(code); //登录用
+					
+					request({
+						url:"/getWxSessionKey",
+						data:{
+							code
+						},
+						method: 'POST',
+						success(data){
+							console.log(data)
+						},
+						fail(e){
+							console.log(e)
+						}
+					})
+					
+				    
 				  }
 				});
 			}

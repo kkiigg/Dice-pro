@@ -1,3 +1,10 @@
+/*
+ * @Author: zw
+ * @Date: 2021-10-09 11:05:58
+ * @LastEditors: zw
+ * @LastEditTime: 2021-10-11 15:18:31
+ * @Description: 
+ */
 const Koa = require('koa')
 const app = new Koa()
 const views = require('koa-views')
@@ -5,6 +12,7 @@ const json = require('koa-json')
 const onError = require('koa-onerror')
 const bodyparser = require('koa-bodyparser')
 const logger = require('koa-logger')
+var cors = require('koa2-cors');
 require('module-alias/register');
 import  initRouter from './routes/index' 
 
@@ -20,6 +28,21 @@ app.use(bodyparser({
 }))
 app.use(json())
 app.use(logger())
+app.use(cors({
+  origin: function(ctx) {
+    // if (ctx.url === '/test') {
+    //   return false;
+    // }
+    return '*';
+  },
+  exposeHeaders: ['WWW-Authenticate', 'Server-Authorization'],
+  maxAge: 5,
+  credentials: true,
+  allowMethods: ['GET', 'POST', 'DELETE'],
+  allowHeaders: ['Content-Type', 'Authorization', 'Accept'],
+}))
+
+
 app.use(require('koa-static')(__dirname + '/public'))
 
 app.use(views(__dirname + '/views', {

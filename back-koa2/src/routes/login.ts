@@ -1,6 +1,13 @@
+/*
+ * @Author: zw
+ * @Date: 2021-10-09 11:05:58
+ * @LastEditors: zw
+ * @LastEditTime: 2021-10-11 18:33:46
+ * @Description: 
+ */
 const  Router  =require('koa-router') 
 const router=new Router()
-import request from 'request'
+import {post} from '../plugins/axios'
  
 import  {ResEntity} from '../entity/Base'
 // import  {ResEntity} from '@/entity/Base.js'
@@ -58,7 +65,8 @@ router.post('/regist', async (ctx:any, next:any) => {
   ctx.body = ResEntity(true,{},'success')
 })
 
-router.post('getWxSessionKey',async(ctx:any, next:any)=>{
+//wxlogin
+router.post('/getWxSessionKey',async(ctx:any, next:any)=>{
   console.log(ctx.request.body)
   let {code} =ctx.request.body
   let appid=config.wx.appId
@@ -69,19 +77,30 @@ router.post('getWxSessionKey',async(ctx:any, next:any)=>{
   let requestData={
     appid,
     secret,
-    js_code:code
+    js_code:code,
     grant_type:'authorization_code'
   }
-  let res=awiat request({
-    url,//请求路径
-    method: "POST",//请求方式，默认为get
-    headers: {//设置请求头
-        "content-type": "application/json",
-    },
-    body: JSON.stringify(requestData)//post参数字符串
-  })
-  console.log(res)  //{"session_key":"xUOV4G4soVXaJBJ9SPRouA==","openid":"ooR4D5PLGowivQlEL1FWPyUHUwG4"} 类似这样
-  return res
+  console.log('requestData-->',requestData)
+  try{
+
+    //{"session_key":"xUOV4G4soVXaJBJ9SPRouA==","openid":"ooR4D5PLGowivQlEL1FWPyUHUwG4"} 类似这样
+    interface wxLoginResponse {
+      session_key:string
+      openid:string
+    }
+
+    let res:wxLoginResponse=await post({
+      url,//请求路径
+      params: requestData   //post参数字符串
+      //body: JSON.stringify(requestData)//post参数字符串
+    })
+    console.log('res-->',res)  
+    ctx.body = ResEntity(true,{openid:res.openid},'success')
+  }catch(e){
+    console.log('error->',e)
+    ctx.body = ResEntity(false,{},'success')
+  }
+  
 })
 
 export default router
