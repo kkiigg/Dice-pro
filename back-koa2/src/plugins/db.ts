@@ -6,6 +6,7 @@ var mysql = require('mysql');
 const dbConfig={
   ...config.database,
   database : 'dice'
+  // database : 'team-project'
 }
 console.log('dbConfig==>',dbConfig)
 var pool  = mysql.createPool(dbConfig);
@@ -80,12 +81,22 @@ export async function drop(table:string,paramsJson:object){
 function executeSql(sql:string){
   return new Promise(function(resolve,reject){
     try{
-      pool.query(sql,function (error:any, results:any, fields:any) {
-        if (error) throw error;
-        console.log('The solution is: ', results);
-        // console.log('The solution is: ', results[0].solution);
-        resolve(results)
+      console.log('(##################pool',pool)
+      pool.getConnection((error,connection)=>{
+
+        if(error){
+          throw error
+          return ;
+        }
+        connection.query(sql,function (error:any, results:any, fields:any) {
+          if (error) throw error;
+          console.log('The solution is: ', results);
+          // console.log('The solution is: ', results[0].solution);
+          resolve(results)
+        })
       })
+
+      
       
     }catch(e){
       console.log('error is =>',e)

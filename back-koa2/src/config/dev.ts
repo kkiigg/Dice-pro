@@ -1,8 +1,17 @@
+/*
+ * @Author: zw
+ * @Date: 2021-10-09 11:05:58
+ * @LastEditors: zw
+ * @LastEditTime: 2021-10-12 15:08:21
+ * @Description: 
+ */
 export default {
   database:{
+    // host:'127.0.0.1',
     host:'localhost',
     port:3306,
-    username:'root',
+    // username:'root',连不上 卡了好久 法克
+    user:'root', //windows
     password:'root'
   },
   wx:{

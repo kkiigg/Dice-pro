@@ -2,7 +2,7 @@
  * @Author: zw
  * @Date: 2021-10-09 11:05:58
  * @LastEditors: zw
- * @LastEditTime: 2021-10-11 18:33:46
+ * @LastEditTime: 2021-10-11 18:51:20
  * @Description: 
  */
 const  Router  =require('koa-router') 
@@ -44,6 +44,7 @@ router.post('/login', async (ctx:any, next:any) => {
 
   
 })
+
 router.post('/regist', async (ctx:any, next:any) => {
   console.log(ctx.request.body)
   let {username,password} =ctx.request.body
