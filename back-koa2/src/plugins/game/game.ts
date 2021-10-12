@@ -6,9 +6,10 @@
  * @Description: 
  */
 import { gameMember, room, yatxyGameRecord } from '../../type/game'
+import {createRandomId,getDateStr} from './gemeUtil'
+import Websocket from '../websocket'
 
-
-export default class DiceGame{
+export class DiceGame{
     //房间
     rooms: Map<String,room<yatxyGameRecord>> = new Map();
 
@@ -16,15 +17,31 @@ export default class DiceGame{
     /**
      * @name: 进入|创建房间
      */
-    joinRoom(roomId: string, MemberObj: gameMember) {
+    joinRoom( MemberObj: gameMember,roomId?: string) {
         // rooms.members.push(member)
         
+        let rooms=this.rooms
         //查看是否存在房间
-        for(let rommid in this.rooms){
-            //不存在
-    
+        if(!roomId || !rooms[roomId]  ){
+          //不存在
+          let newId:string=createRandomId()
+          let newRoom:room<yatxyGameRecord>={
+            id:newId,
+            roomname:"testName",
+            members:[],
+            gameData:[MemberObj],
+            createDataTime:getDateStr(),
+          }
+          rooms.set(newId,newRoom)
+
+          //加入socket wwwwwwwwwwwwwwwwww
+        }else{
             //存在
+            rooms[roomId].members.push(MemberObj)
+            
+            //加入socket wwwwwwwwwwwwwwwwww
         }
+        
     }
     /**
      * @name: 添加房间成员
@@ -36,15 +53,34 @@ export default class DiceGame{
     /**
      * @name: 成员操作发送数据
      */    
-    conductCallback(){
-
+    conductCallback(data){
+      console.log(data)
     }
 
     /**
      * @name: 离开游戏
      */    
-    leaveGame(){
-
+    leaveGame(roomId:string,userId:string){
+      let rooms=this.rooms
+      //查看是否存在房间
+      if(!roomId || !rooms[roomId] ){
+        console.warn('%%找不到房间',roomId)
+        return 
+      }
+      
+      let membersArr=rooms[roomId].members
+      if(!membersArr.length ){
+        console.warn('%%找不到玩家',roomId)
+        return
+      }
+      let leaveFlag=false
+      for(let i=0;i<membersArr.length;i++){
+        if(membersArr[i].id==userId){
+          membersArr.splice(i,1)
+          leaveFlag=true
+        }
+      }
+      if(!leaveFlag) console.warn('%%找不到玩家',roomId);
     }
 
     /**
@@ -55,4 +91,15 @@ export default class DiceGame{
     }
 
     
+}
+
+export function startGame(server:any){
+  let diceGame=new DiceGame()
+  const websocket=new Websocket()
+  websocket.init({
+    server,
+    // onDisconnect?:any
+    onMessage:diceGame.conductCallback,
+    onLeave:diceGame.leaveGame
+  })
 }

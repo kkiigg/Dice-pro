@@ -16,7 +16,7 @@ export type gameMember={
     id:string
     name:string
     avatar:string
-    status:member_ready_status
+    status?:member_ready_status
     rank?:string
 }
 
@@ -26,7 +26,7 @@ export type room<T>={
     roomname:string
     members:gameMember[]
     gameData:T[]
-    createDataTime:Date
+    createDataTime:string
 }
 
 //游戏记录

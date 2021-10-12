@@ -7,23 +7,42 @@
  */
 import { Server } from 'socket.io'
 
+type wsConfig={
+  server:any
+  onDisconnect?:any
+  onMessage?:any
+  onLeave?:any
+}
 
-export default class Websocket {
+export default class WebSocket {
     
-    init(_server){
-        const server = new Server(_server)
+    init(config:wsConfig){
+        const server = new Server(config.server)
 
         server.on('connection', (socket) => {
             console.log('a user connected');
 
             socket.on('disconnect', () => {
                 console.log('user disconnected');
+                if(config.onDisconnect){
+                  config.onDisconnect()
+                }
             });
 
             //定义前端事件
-            socket.on('chat message', (msg) => {
+            socket.on('message', (msg) => {
                 console.log('message: ' + msg);
+                if(config.onMessage){
+                  config.onMessage()
+                }
             });
+
+            socket.on('close',function(){
+              //do something when connection close
+              if(config.onLeave){
+                config.onLeave()
+              }
+            })
         });
     }
     

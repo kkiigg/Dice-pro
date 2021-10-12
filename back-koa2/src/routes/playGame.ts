@@ -11,12 +11,20 @@ import {post} from '../plugins/axios'
  
 import  {ResEntity} from '../entity/Base'
 // import  {ResEntity} from '@/entity/Base.js'
-
-
+import {DiceGame} from '../plugins/game/game'
+import { member_ready_status } from '../type/game'
 
 router.post('/createWx', async (ctx:any, next:any) => {
- 
-    ctx.response.body=ResEntity(true,{},'success')
+  let {userid} =ctx.request.body
+
+  const diceGame= new DiceGame()
+  diceGame.joinRoom({
+    id:"tttss",
+    name:'wechat',
+    avatar:'asdasd',
+  },userid)
+
+  ctx.response.body=ResEntity(true,{},'success')
   
 })
 
