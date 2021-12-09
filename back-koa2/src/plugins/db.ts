@@ -111,5 +111,4 @@ function executeSql(sql:string){
 //   update,
 //   drop
 // }
-
 //  querySQL=querySQL
