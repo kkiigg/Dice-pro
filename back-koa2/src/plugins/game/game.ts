@@ -2,7 +2,7 @@
  * @Author: zw
  * @Date: 2021-10-12 18:44:54
  * @LastEditors: zw
- * @LastEditTime: 2021-10-12 19:00:12
+ * @LastEditTime: 2021-12-24 11:48:27
  * @Description: 
  */
 import { gameMember, room, yatxyGameRecord } from '../../type/game'
