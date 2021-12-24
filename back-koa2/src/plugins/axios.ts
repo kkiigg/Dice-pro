@@ -2,7 +2,7 @@
  * @Author: zw
  * @Date: 2021-10-11 11:17:23
  * @LastEditors: zw
- * @LastEditTime: 2021-10-11 18:21:22
+ * @LastEditTime: 2021-12-08 18:32:12
  * @Description: 
  */
 import axios, { AxiosResponse } from 'axios'
@@ -59,3 +59,5 @@ export function post({url,params}):Promise<any>{
 	  params
 	});
 }
+
+console.log('11')
