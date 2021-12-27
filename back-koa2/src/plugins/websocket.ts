@@ -1,4 +1,4 @@
-/*
+6/*
  * @Author: zw
  * @Date: 2021-10-12 18:07:47
  * @LastEditors: zw
@@ -9,6 +9,7 @@ import { Server } from 'socket.io'
 
 type wsConfig={
   server:any
+  onConnection?:any
   onDisconnect?:any
   onMessage?:any
   onLeave?:any
@@ -21,7 +22,10 @@ export default class WebSocket {
 
         server.on('connection', (socket) => {
             console.log('a user connected');
-
+            if(config.onConnection){
+              config.onConnection()
+            }
+            
             socket.on('disconnect', () => {
                 console.log('user disconnected');
                 if(config.onDisconnect){
