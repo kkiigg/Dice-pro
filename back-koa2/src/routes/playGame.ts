@@ -11,8 +11,8 @@ import {post} from '../plugins/axios'
  
 import  {ResEntity} from '../entity/Base'
 // import  {ResEntity} from '@/entity/Base.js'
-import {DiceGame} from '../plugins/game/game'
-import { member_ready_status } from '../type/game'
+import {DiceGame} from '../scripts/game/gameRoom'
+import { member_ready_status } from '../types/game'
 
 router.post('/createWx', async (ctx:any, next:any) => {
   let {userid} =ctx.request.body

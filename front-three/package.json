@@ -10,6 +10,7 @@
     "serve": "webpack serve"
   },
   "devDependencies": {
+    "@types/dat.gui": "^0.7.7",
     "@types/three": "^0.133.0",
     "autoprefixer": "^10.3.7",
     "css-loader": "^6.3.0",
@@ -26,6 +27,8 @@
     "webpack-dev-server": "^4.3.1"
   },
   "dependencies": {
+    "dat.gui": "^0.7.7",
+    "reset-css": "^5.0.1",
     "three": "^0.133.1"
   }
 }
