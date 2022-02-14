@@ -1,3 +1,4 @@
+//jwt 验证 @
 const jwt=require('jsonwebtoken');
 
 const privateKey="test20201116";
