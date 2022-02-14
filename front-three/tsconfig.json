@@ -8,5 +8,5 @@
     "moduleResolution": "node"
   },
   // "files": ["src/**/*"],
-  "include":["src/**/*"]
+  "include": ["src/**/*"]
 }
